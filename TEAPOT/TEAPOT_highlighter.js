@@ -4,7 +4,7 @@
 // @namespace    dithpri.RCES
 // @description  Adds TEAPOT's icon besides members during auctions
 // @author       dithpri + slight edits by y0.
-// @downloadURL  https://gist.githubusercontent.com/NS-y0/GovTools/raw/master/TEAPOT/Teapot_highlighter.user.js
+// @downloadURL  https://github.com/NS-y0/GovTools/raw/master/TEAPOT/TEAPOT_highlighter.js
 // @noframes
 // @match        https://www.nationstates.net/*page=deck*/*card=*
 // @match        https://www.nationstates.net/*card=*/*page=deck*

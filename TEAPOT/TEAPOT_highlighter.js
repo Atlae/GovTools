@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         TEAPOT Highlighter
-// @version      0.3
+// @version      0.4
 // @namespace    dithpri.RCES
 // @description  Adds TEAPOT's icon besides members during auctions
 // @author       dithpri + slight edits by y0.
@@ -56,6 +56,17 @@ const icon_base64 = ' data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAgCAYA
 				el.parentNode.parentNode.classList.remove("rces-cl-TEAPOT");
 			}
 		});
+		document.querySelectorAll("a.nlink:not(.rces-cl-TEAPOT-parsed)").forEach(function (el, i) {
+			const canonical_nname = el
+			.getAttribute("href")
+			.replace(/^nation=/, "");
+			if (members_array.includes(canonical_nname)) {
+				const new_el = document.createElement("span");
+				new_el.classList.add("rces-cl-TEAPOT-inline");
+				el.parentNode.insertBefore(new_el, el);
+				el.classList.add("rces-cl-TEAPOT-parsed");
+			}
+		});
 	};
 
 	if (document.getElementById("auctiontablebox")) {
@@ -85,6 +96,7 @@ const icon_base64 = ' data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAgCAYA
 		});
 
 		const observerOptions = {
+			subtree: true,
 			childList: true
 		};
 
@@ -100,6 +112,12 @@ background-position: left;
 tr > td.rces-cl-TEAPOT:nth-child(5) {
 background-image: linear-gradient(270deg, rgba(255,255,255,0), rgb(255,255,255) 50px, rgba(255, 255, 255, 0) 100px), url('${icon_base64}');
 background-position: right;
+}
+.rces-cl-TEAPOT-inline {
+background-repeat: no-repeat;
+background-image: url('${icon_base64}');
+background-size: contain;
+padding-left: 1.5em;
 }`);
 	}
 })();
